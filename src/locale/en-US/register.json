@@ -1,0 +1,12 @@
+{
+  "register": "Register",
+  "name": "Enter your name",
+  "email": "Enter your email",
+  "password": "Enter a password",
+  "password_check": "Re-enter your password",
+  "blank_name": "Name is required",
+  "blank_email": "Email is required",
+  "blank_password": "Password is required",
+  "blank_password_check": "Re-enter your password",
+  "password_length": "Password must be between 6 and 12 characters"
+}

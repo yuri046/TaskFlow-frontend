@@ -1,0 +1,20 @@
+{
+    "register":"Cadastrar",
+    "register_2":"Registre-se",
+    "label1":"E-mail",
+    "label2": "Nome",
+    "label3":"Senha",
+    "label4":"Digite sua senha novamente",
+    "name":"Digite seu nome",
+    "email":"Digite seu e-mail",
+    "password": "Digite uma senha",
+    "password_check": "Insira sua senha novamente",
+    "blank_name":"Nome é obrigatório",
+    "blank_email": "E-mail é obrigatório",
+    "blank_password": "Senha é obrigatória",
+    "blank_password_check":"Digite sua senha novamente",
+    "password_length": "A senha deve possuir de 6 a 12 caracteres",
+    "invalid_email":"E-mail inválido",
+    "to_login1":"Já possui uma conta?",
+    "to_login2": "Login"
+}

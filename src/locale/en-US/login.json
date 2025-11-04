@@ -1,0 +1,10 @@
+{
+  "title":"E-mail",
+  "login": "Login",
+  "email": "Enter your email",
+  "password": "Enter your password",
+  "blank_email": "Email is required",
+  "blank_password": "Password is required",
+  "wrong_email": "Email not registered",
+  "wrong_password": "Incorrect password"
+}

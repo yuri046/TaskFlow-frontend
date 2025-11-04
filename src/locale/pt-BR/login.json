@@ -1,0 +1,14 @@
+{
+    "label1":"E-mail",
+    "label2":"Senha",
+    "login":"Entrar",
+    "email":"Digite o seu email",
+    "password":"Digite a sua senha",
+    "blank_email":"E-mail é obrigatório",
+    "blank_password": "Senha é obrigatória",
+    "wrong_email":"E-mail não cadastrado",
+    "wrong_password":"Senha incorreta",
+    "invalid_email":"E-mail inválido",
+    "password_length": "A senha deve ter de 6 a 12 caracteres",
+    "to_register": "Você não possui uma conta?"
+}
