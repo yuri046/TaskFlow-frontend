@@ -1,7 +1,10 @@
-import { useState} from "react";
+import {useState} from "react";
 import { useTranslation } from "react-i18next";
-import styles from "./RegisterForm.module.css"
-import Button from "../../Button/button";
+import styles from "./Form.module.css";
+import Register from "../../API/TaskFlow";
+import { TASKFLOW_URL } from "../../constant/url";
+
+
 
 const RegisterFormComponent = ()=>{
     const {t} = useTranslation('register');
@@ -11,19 +14,26 @@ const RegisterFormComponent = ()=>{
     const [reTypedPassword, setReTypedPassword] = useState('');
     const [errors, setErrors] = useState({});
 
+    const [user, setUser] = useState({})
+
     const handleSubmit = (e)=>{
         e.preventDefault()
 
         const newErrors = {}
+        const newUser = {}
+
+        if(!name){
+            newErrors.name = t("blank_name")
+        } else {
+            newUser.name = name
+        }
 
         if(!email){
             newErrors.email = t('blank_email')
         } else if(!/\S+@\S+\.\S+/.test(email)){
             newErrors.email = t('invalid_email')
-        }
-
-        if(!name){
-            newErrors.name = t("blank_name")
+        } else{
+            newUser.email = email
         }
 
         if(!password){
@@ -36,13 +46,18 @@ const RegisterFormComponent = ()=>{
             newErrors.reTypedPassword = t("blank_password")
         } else if(reTypedPassword != password){
             newErrors.reTypedPassword = t("blank_password_check")
+        } else {
+            newUser.password = password
         }
 
         setErrors(newErrors)
+        setUser(newUser)
+
+        Register(TASKFLOW_URL, user)
     }
 
     return(
-        <div className={styles.container}>
+        
             <form action="POST" onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.inputContainer}>
                     <label htmlFor="name">{t('label2')}</label>
@@ -70,6 +85,7 @@ const RegisterFormComponent = ()=>{
                     type="password"
                     placeholder={t('password')}
                     id="password"
+                    value={password}
                     onChange={(e)=> setPassword(e.target.value)}
                     />
                     {errors.password && <span style={{color:'red'}}>{errors.password}</span>}
@@ -82,13 +98,13 @@ const RegisterFormComponent = ()=>{
                     id="reTypedPassword" 
                     onChange={(e)=> setReTypedPassword(e.target.value)}
                     />
+                    {errors.reTypedPassword && <span style={{color:'red'}}>{errors.reTypedPassword}</span>}
                 </div>
                 
-                <Button style={{color:'white'}}>{t("register")}</Button>
+                <input className={styles.button} type="submit" value={t("register")}/>
             </form>
 
-            <div>{t("to_login1")}<a href="register">{t("to_login2")}</a></div>
-        </div>
+
     )
 }
 

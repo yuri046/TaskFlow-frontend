@@ -1,14 +1,15 @@
-import Login from './pages/Login/Login'
-import Register from './pages/Register/Register'
+
 import './App.css'
+import { BrowserRouter } from 'react-router-dom'
+import AppRoutes from './Routes/AppRoutes'
 
 function App() {
   
 
   return (
-      <>
-        <Register/>
-      </>
+      <BrowserRouter>
+        <AppRoutes/>
+      </BrowserRouter>
   )
 }
 

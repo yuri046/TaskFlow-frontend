@@ -1,43 +1,47 @@
 import { useState} from "react";
 import { useTranslation } from "react-i18next";
-import styles from "./LoginForm.module.css"
-import Button from "../../Button/button";
+import styles from "./Form.module.css"
+
 
 const LoginForm = () => {
     const {t} = useTranslation('login'); 
-    const {t: t_register} = useTranslation('register');
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({});
+    const [user, setUser] = useState({})
 
     const handleSubmit = (e)=>{
         e.preventDefault();
 
         const newErrors = {};
+        const newUser = {}
 
         if(!email){
             newErrors.email = t('blank_email');
         } else if(!/\S+@\S+\.\S+/.test(email)){
-            newErrors.email = t('invalid_email')
+            newErrors.email = t('invalid_email');
+        } else{
+            newUser.email = email;
         } 
 
         if(!password){
-            newErrors.password = t('blank_password')
+            newErrors.password = t('blank_password');
         } else if(password.length < 6 || password.length > 12){
-            newErrors.password = t('password_length')
+            newErrors.password = t('password_length');
+        } else {
+            newUser.password = password;
         }
 
         setErrors(newErrors)
 
-        if(Object.keys(newErrors).length === 0){
-            console.log("Formulário válido")
+        if(Object.keys(newUser.length == 2)){
+            setUser(newUser);
         }
     }
     
     return(
-        <div className={styles.container}>
-            
-            <form action="POST" onSubmit={handleSubmit} className={styles.form}>
+        
+           <form action="POST" onSubmit={handleSubmit} className={styles.form}>
                 <h1>TaskFlow</h1>
                 <div className={styles.inputContainer}>
                     <label htmlFor="email">{t('label1')}</label>
@@ -56,15 +60,16 @@ const LoginForm = () => {
                     type="password"
                     placeholder={t('password')}
                     id="password"
+                    value={password}
                     onChange={(e)=> setPassword(e.target.value)}
                     />
                     {errors.password && <span style={{color:'red'}}>{errors.password}</span>}
                 </div>
-                <Button style={{color:'white'}}>{t("login")}</Button>
+                <input className={styles.button} type="submit" value={t("login")}/>
             </form>
 
-            <div>{t('to_register')}<a href="register">{t_register("register_2")}</a></div>
-        </div>
+            
+       
     )
 };
 
