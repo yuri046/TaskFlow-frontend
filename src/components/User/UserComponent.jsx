@@ -1,6 +1,9 @@
-import userLogo from "../../assets/user.png"
+import { useTranslation } from "react-i18next"
 import styles from './UserComponent.module.css'
+import img from "../../assets/user.jpg"
+
 const UserComponent = ()=>{
+    const {t} = useTranslation("commom")
     const user = {
         "id":1,
         "name": "joao",
@@ -8,11 +11,13 @@ const UserComponent = ()=>{
         "password": "12345",
         "tasks": null
     }
+
+    
     return (
         <div className={styles.card}>
-          <img className={styles.logo} src={userLogo} alt="user-logo" />
-          <p className={styles.text}>{user.name}</p>
-          <p className={styles.text}>{user.email}</p>
+            <img src={img} alt="" className={styles.img}/>
+            <p className={styles.text}>{user.name}</p>
+            <p className={styles.text}>{user.email}</p>
         </div>
     )
 }

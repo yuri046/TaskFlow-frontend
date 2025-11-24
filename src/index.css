@@ -9,6 +9,8 @@
   padding: 0;
   margin: 0;
   --background-primary-color: linear-gradient(8deg,rgba(150, 48, 139, 1) 0%, rgba(152, 29, 253, 1) 60%, rgba(194, 74, 74, 1) 91%);
+  --background-secondary-color: linear-gradient(90deg, #ae2dff 0%, #da5151 100%);
+  --background-third-color:#303033;
   --primary-font: "Roboto", Arial, Helvetica, sans-serif;
   --form-background-primary-color: #303033;
   font-family: var(--primary-font);

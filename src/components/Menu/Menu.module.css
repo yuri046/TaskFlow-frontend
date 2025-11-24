@@ -1,0 +1,53 @@
+.container{
+    min-width: 3cqw;
+    left: 0;
+    background-color: var(--background-third-color);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 70cqh;
+    margin-top: 5%;
+    border-radius:0 10px 10px 0 ;
+    
+}
+ul{
+    list-style: none;
+}
+.icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+
+    cursor: pointer;
+}
+
+.icon:hover{
+    background-color: #4e4e53;
+    padding-left: 12px;
+    
+}
+
+aside > .icon:last-child{
+    margin-bottom: 2px ;
+}
+
+aside > .icon:last-child:hover {
+    border-radius: 0 0 10px 0;
+    
+}
+
+@media(max-width: 767px){
+    .container{
+        position: fixed;
+        max-height: 30cqh;
+    }
+}
+
+
+
+
+
+
+

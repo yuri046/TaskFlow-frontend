@@ -1,0 +1,11 @@
+{
+    "label1": "Digite o novo nome",
+    "label2": "Digite o novo email",
+    "label3": "Digite a nova senha",
+    "label4":"Digite a senha novamente",
+    "name": "Novo nome",
+    "email": "Novo email",
+    "password": "Nova senha",
+    "register": "Atualizar",
+    "allFieldsBlank": "Pelo menos um dos campos deve estar preenchidos"
+}

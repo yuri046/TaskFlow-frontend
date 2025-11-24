@@ -1,10 +1,9 @@
 import {useState} from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./Form.module.css";
-import Register from "../../API/TaskFlow";
+import {Register} from "../../API/TaskFlow";
 import { TASKFLOW_URL } from "../../constant/url";
-
-
+import { validateEmail, validateName, validatePassword, validateReTypedPassword } from "../../utils/validate";
 
 const RegisterFormComponent = ()=>{
     const {t} = useTranslation('register');
@@ -14,66 +13,43 @@ const RegisterFormComponent = ()=>{
     const [reTypedPassword, setReTypedPassword] = useState('');
     const [errors, setErrors] = useState({});
 
-    const [user, setUser] = useState({})
-
     const handleSubmit = (e)=>{
         e.preventDefault()
 
         const newErrors = {}
         const newUser = {}
 
-        if(!name){
-            newErrors.name = t("blank_name")
-        } else {
-            newUser.name = name
-        }
-
-        if(!email){
-            newErrors.email = t('blank_email')
-        } else if(!/\S+@\S+\.\S+/.test(email)){
-            newErrors.email = t('invalid_email')
-        } else{
-            newUser.email = email
-        }
-
-        if(!password){
-            newErrors.password = t("blank_password")
-        } else if(password.length < 6 || password.length > 12){
-            newErrors.password = t("password_length")
-        } 
-
-        if(!reTypedPassword){
-            newErrors.reTypedPassword = t("blank_password")
-        } else if(reTypedPassword != password){
-            newErrors.reTypedPassword = t("blank_password_check")
-        } else {
-            newUser.password = password
-        }
-
+        validateEmail(newErrors, newUser, t)
+        validatePassword(newErrors, newUser, t)
+        validateReTypedPassword(newErrors, newUser, t, reTypedPassword)
+        validateName(newErrors, newUser, t, name)
         setErrors(newErrors)
-        setUser(newUser)
 
-        Register(TASKFLOW_URL, user)
+        if(Object.keys(newErrors).length === 0){
+            Register(TASKFLOW_URL, newUser)
+        }
+        
     }
 
     return(
         
-            <form action="POST" onSubmit={handleSubmit} className={styles.form}>
+            <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.inputContainer}>
                     <label htmlFor="name">{t('label2')}</label>
                     <input 
                     type="text"
                     placeholder={t('name')} 
-                    id="name"
+             
                     onChange={(e)=> setName(e.target.value)}
                     />
+                    {errors.name && <span style={{color:'red'}}>{errors.name}</span>}
                 </div>
                 <div className={styles.inputContainer}>
                     <label htmlFor="email">{t('label1')}</label>
                     <input 
                     type="email"
                     placeholder={t('email')}
-                    id="email"
+               
                     value={email}
                     onChange={(e)=> setEmail(e.target.value)}
                     />
@@ -84,7 +60,7 @@ const RegisterFormComponent = ()=>{
                     <input 
                     type="password"
                     placeholder={t('password')}
-                    id="password"
+                  
                     value={password}
                     onChange={(e)=> setPassword(e.target.value)}
                     />
@@ -95,7 +71,7 @@ const RegisterFormComponent = ()=>{
                     <input 
                     type="password" 
                     placeholder={t('password')}
-                    id="reTypedPassword" 
+         
                     onChange={(e)=> setReTypedPassword(e.target.value)}
                     />
                     {errors.reTypedPassword && <span style={{color:'red'}}>{errors.reTypedPassword}</span>}

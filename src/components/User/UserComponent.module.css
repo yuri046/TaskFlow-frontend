@@ -2,25 +2,40 @@
     width: 30cqw;
     display: flex;
     flex-direction: column;
-    border-radius: 20px;
+    border-radius: 25px;
     padding: 10px;
     max-width: 20cqw;
-
-}
-.logo{
-    width: 100%;
-    border-bottom: 1px solid;
-    border: 2px solid;
-    border-radius: 20px;
+    background-color: var(--background-third-color);
+    align-items: center;
+    gap: 15px;
+    min-height: 40cqh;
 }
 
-.texto{
-    width: 100%;
+.img{
+    width: 50%;
+    border-radius: 50%;
 }
+
+.text{
+    width: 100%;
+    background-color: rgb(250, 226, 194);
+    padding: 10px;
+    border-radius: 10px;
+}
+
 
 @media (max-width: 767px){
     .card{
-        max-width: 40cqw;
-        
+        min-width: 100%;
+        border-radius: 0;
+        max-height: 50cqh;
+    }
+
+    .button{
+        margin-top: 1cqh;
+    }
+
+    .text{
+        text-indent: 5px;
     }
 }

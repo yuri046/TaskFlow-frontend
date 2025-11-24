@@ -1,5 +1,26 @@
 .container{
-    background: var(--background-primary-color);
-    height: 100cqh;
+    background: var(--background-secondary-color);
+    min-height: 100cqh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.subContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: initial;
+    width: 90cqw;
+    flex-wrap: wrap;
+}
+
+@media(max-width: 767px){
+    .container{
     
+        flex-wrap: wrap;
+        
+    }
+
+    .subContainer{
+        width: 100cqw;
+    }
 }

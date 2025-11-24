@@ -1,5 +1,6 @@
 import UpdateForm from "../../components/Forms/UpdateForm";
-import UserComponent from "../../components/User/User";
+import AsideMenu from "../../components/Menu/AsideMenu";
+import UserComponent from "../../components/User/UserComponent";
 import styles from "./User.module.css";
 
 const User = ()=>{
@@ -12,8 +13,12 @@ const User = ()=>{
     }
     return(
         <div className={styles.container}>
-            <UserComponent/>
-            <UpdateForm/>
+            <AsideMenu/>
+            <div className={styles.subContainer}> 
+                <UserComponent/>
+                <UpdateForm/>   
+            </div>
+            
         </div>
     )
 }

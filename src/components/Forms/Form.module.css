@@ -23,7 +23,7 @@ input{
     border-radius: 5px;
     border: 1px solid #A3A3A4;
     padding: 10px;
-    background-color: #303033;
+    background-color: var(--background-third-color);
     color: white;
     
 }
@@ -37,6 +37,7 @@ input:hover{
     color: #303033;
     font-size: 1rem;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .button:hover{

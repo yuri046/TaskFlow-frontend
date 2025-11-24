@@ -1,6 +1,9 @@
-import { useState} from "react";
+import { useEffect, useState} from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./Form.module.css"
+import { Login } from "../../API/TaskFlow";
+import { TASKFLOW_URL } from "../../constant/url";
+import { validateEmail, validatePassword } from "../../utils/validate";
 
 
 const LoginForm = () => {
@@ -8,7 +11,6 @@ const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({});
-    const [user, setUser] = useState({})
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -16,39 +18,28 @@ const LoginForm = () => {
         const newErrors = {};
         const newUser = {}
 
-        if(!email){
-            newErrors.email = t('blank_email');
-        } else if(!/\S+@\S+\.\S+/.test(email)){
-            newErrors.email = t('invalid_email');
-        } else{
-            newUser.email = email;
-        } 
-
-        if(!password){
-            newErrors.password = t('blank_password');
-        } else if(password.length < 6 || password.length > 12){
-            newErrors.password = t('password_length');
-        } else {
-            newUser.password = password;
-        }
-
+        validateEmail(newErrors, newUser, t, email)
+        validatePassword(newErrors, newUser, t, password)
+        
         setErrors(newErrors)
+        console.log(newUser)
 
-        if(Object.keys(newUser.length == 2)){
-            setUser(newUser);
-        }
+        const data = Login(TASKFLOW_URL, newUser)
+        localStorage.setItem("token", data["token"])
     }
+
+
     
     return(
         
-           <form action="POST" onSubmit={handleSubmit} className={styles.form}>
+           <form  onSubmit={handleSubmit} className={styles.form}>
                 <h1>TaskFlow</h1>
                 <div className={styles.inputContainer}>
                     <label htmlFor="email">{t('label1')}</label>
                     <input 
                     type="email"
                     placeholder={t('email')}
-                    id="email"
+        
                     value={email}
                     onChange={(e)=> setEmail(e.target.value)}
                     />
@@ -59,7 +50,7 @@ const LoginForm = () => {
                     <input 
                     type="password"
                     placeholder={t('password')}
-                    id="password"
+                  
                     value={password}
                     onChange={(e)=> setPassword(e.target.value)}
                     />
