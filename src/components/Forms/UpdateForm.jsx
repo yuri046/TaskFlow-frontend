@@ -26,7 +26,7 @@ const UpdateForm = () => {
 
     if(Object.keys(newErrors).length === 0){
       const token = localStorage.getItem("token")
-      UpdateUser(newUser, token )
+      UpdateUser(TASKFLOW_URL,newUser, token )
     }
   }
 

@@ -6,6 +6,7 @@ import { validateDescription, validateTitle } from "../../utils/validate"
 import { ConcludeTask, CreateTask, DeleteTask, UpdateTask } from "../../API/TaskFlow"
 import { useEffect } from "react"
 import { GetAllTasks } from "../../API/TaskFlow"
+import { TASKFLOW_URL } from "../../constant/url"
 
 
 const Dashboard = ()=>{
@@ -19,7 +20,7 @@ const Dashboard = ()=>{
 
     useEffect(()=>{
         const loadTasks = async ()=>{
-            const data = await GetAllTasks(token)
+            const data = await GetAllTasks(TASKFLOW_URL, token)
             setTasks(data || [])
         }
 
@@ -45,7 +46,7 @@ const Dashboard = ()=>{
         validateDescription(description, newTask)
 
         if(Object.keys(newErrors).length === 0){
-            await CreateTask(newTask, token)
+            await CreateTask(TASKFLOW_URL,newTask, token)
             const data = await GetAllTasks(token)
             setTasks(Array.isArray(data) ? data : [])
         }
@@ -54,14 +55,14 @@ const Dashboard = ()=>{
     }
 
     const Conclude = async(task)=>{
-        await ConcludeTask(token, task)
-        const data = await GetAllTasks(token)
+        await ConcludeTask(TASKFLOW_URL, token, task)
+        const data = await GetAllTasks(TASKFLOW_URL,token)
         setTasks(Array.isArray(data) ? data : [])
     }
 
     const Delete = async (id)=>{
-        await DeleteTask(id, token)
-        const data = await GetAllTasks(token)
+        await DeleteTask(TASKFLOW_URL,id, token)
+        const data = await GetAllTasks(TASKFLOW_URL,token)
         setTasks(Array.isArray(data) ? data : [])
     }
 
@@ -81,12 +82,12 @@ const Dashboard = ()=>{
     validateDescription(description, updatedTask);
 
     if (Object.keys(newErrors).length === 0 && taskToEdit) {
-        await UpdateTask(token, {
+        await UpdateTask(TASKFLOW_URL, token, {
             ...taskToEdit,
             ...updatedTask
         });
 
-        const data = await GetAllTasks(token);
+        const data = await GetAllTasks(TASKFLOW_URL,token);
         setTasks(Array.isArray(data) ? data : []);
         setEditingTask(false);
         setTaskToEdit(null);
