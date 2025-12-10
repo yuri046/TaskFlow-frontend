@@ -38,9 +38,9 @@ export async function Register(URL, newUser){
     }
 }
 
-export async function GetUser(token){
+export async function GetUser(URL, token){
   try{
-  const response = await fetch("/users/me",{
+  const response = await fetch(URL + "users/me",{
     method:"GET",
     headers: {
       "Content-type":"application/json",
@@ -57,9 +57,9 @@ export async function GetUser(token){
   return null
 }}
 
-export async function UpdateUser(user, token){
+export async function UpdateUser(URL, user, token){
   try{
-  const response = await fetch("/users/me",{
+  const response = await fetch(URL + "users/me",{
     method:"PUT",
     headers:{
       "Content-type": "application/json",
@@ -79,9 +79,9 @@ export async function UpdateUser(user, token){
 }
 }
 
-export async function CreateTask(newTask, token){
+export async function CreateTask(URL ,newTask, token){
   try{
-    const response = await fetch("/tasks",{
+    const response = await fetch(URL + "tasks",{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
@@ -101,9 +101,9 @@ export async function CreateTask(newTask, token){
   }
 }
 
-export async function GetAllTasks(token){
+export async function GetAllTasks(URL, token){
   try{
-    const response = await fetch("/tasks", {
+    const response = await fetch(URL + "tasks", {
       method:"GET",
       headers:{
         "Content-type":"application/json",
@@ -121,9 +121,9 @@ export async function GetAllTasks(token){
   }
 }
 
-export async function UpdateTask(token, task){
+export async function UpdateTask(URL, token, task){
   try{
-    const response = await fetch("/tasks/" + task.id, {
+    const response = await fetch(URL + "tasks/" + task.id, {
       method:"PUT",
       headers:{
         "Content-Type":"application/json",
@@ -147,9 +147,9 @@ export async function UpdateTask(token, task){
   }
 }
 
-export async function DeleteTask(id, token){
+export async function DeleteTask(URL, id, token){
   try{
-    const response = await fetch("/tasks/" + id, {
+    const response = await fetch(URL +"tasks/" + id, {
       method:"DELETE",
       headers:{
         "Authorization": "Bearer " + token
@@ -168,9 +168,9 @@ export async function DeleteTask(id, token){
   }
 }
 
-export async function ConcludeTask(token, task){
+export async function ConcludeTask(URL, token, task){
   try{
-    const response = await fetch("/tasks/" + task.id,{
+    const response = await fetch(URL + "tasks/" + task.id,{
       method: "PUT",
       headers:{
         "Content-Type": "application/json",
