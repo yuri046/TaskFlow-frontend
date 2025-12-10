@@ -3,6 +3,7 @@ import Login from "../pages/Login/Login"
 import Register from "../pages/Register/Register"
 import PrivateRoute from "./PrivateRoutes"
 import User from "../pages/User/User"
+import Dashboard from "../pages/Dashboard/Dashboard"
 
 
 const AppRoutes = ()=>{
@@ -12,7 +13,7 @@ const AppRoutes = ()=>{
     <Route path="/login" element={<Login/>}/>
     <Route path="/register" element={<Register/>}/> 
     <Route path="/users/me" element={<User/>}/>
-    <Route path="/dashboard"/>
+    <Route path="/dashboard" element={<Dashboard/>}/>
     <Route path="/dashboard/:id"/>
   </Routes>
   )

@@ -9,7 +9,7 @@
     height: 70cqh;
     margin-top: 5%;
     border-radius:0 10px 10px 0 ;
-    
+    box-shadow: 4px 7px 10px 14px rgba(0,0,0,0.1);
 }
 ul{
     list-style: none;

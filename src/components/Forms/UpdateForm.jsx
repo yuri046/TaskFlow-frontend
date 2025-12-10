@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
 import styles from "./Form.module.css";
 import { useState } from "react";
-import { validateAllFields, validateEmail, validateName, validatePassword, validateReTypedPassword } from "../../utils/validate";
+import { validateReTypedPassword, validateUpdate } from "../../utils/validate";
+import { UpdateUser } from "../../API/TaskFlow";
+import { TASKFLOW_URL } from "../../constant/url";
 
 const UpdateForm = () => {
   const {t} = useTranslation('updateUser');
@@ -15,11 +17,17 @@ const UpdateForm = () => {
     e.preventDefault()
 
     const newErrors = {}
-    const newUser = {}
+    const newUser = {name, email, password}
     
-
-    validateAllFields(newErrors, t, name, email, password)
+    if(password.length > 0){
+      validateReTypedPassword(newErrors, newUser, t, reTypedPassword, password)
+    }
     setErrors(newErrors)
+
+    if(Object.keys(newErrors).length === 0){
+      const token = localStorage.getItem("token")
+      UpdateUser(newUser, token )
+    }
   }
 
   return (

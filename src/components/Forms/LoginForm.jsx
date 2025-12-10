@@ -4,6 +4,7 @@ import styles from "./Form.module.css"
 import { Login } from "../../API/TaskFlow";
 import { TASKFLOW_URL } from "../../constant/url";
 import { validateEmail, validatePassword } from "../../utils/validate";
+import { useNavigate, useNavigation } from "react-router-dom";
 
 
 const LoginForm = () => {
@@ -11,8 +12,9 @@ const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({});
+    const navigate = useNavigate()
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault();
 
         const newErrors = {};
@@ -24,12 +26,15 @@ const LoginForm = () => {
         setErrors(newErrors)
         console.log(newUser)
 
-        const data = Login(TASKFLOW_URL, newUser)
-        localStorage.setItem("token", data["token"])
+        const data = await Login(TASKFLOW_URL, newUser)
+        if(data){
+            localStorage.setItem("token", data["token"])
+            navigate("/dashboard")
+        }
+        
     }
 
-
-    
+ 
     return(
         
            <form  onSubmit={handleSubmit} className={styles.form}>

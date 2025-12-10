@@ -18,7 +18,7 @@ const AsideMenu = ()=>{
             <nav >
                 <ul className={styles.ul_navigation}>
                     <li>
-                        <NavLink className={styles.icon}>
+                        <NavLink className={styles.icon} to={"/dashboard"}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 fill="none" stroke="#FFFFFF" >
                                 <path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>
@@ -26,7 +26,7 @@ const AsideMenu = ()=>{
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink className={styles.icon}>
+                        <NavLink className={styles.icon} to={"/users/me"}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 fill="none" stroke="#FFFFFF" >
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>

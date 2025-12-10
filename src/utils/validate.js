@@ -26,7 +26,7 @@ export function validatePassword(newErrors, newUser, translate, password){
     }
 }
 
-export function validateReTypedPassword(newErrors, newUser, translate, reTypedPassword){
+export function validateReTypedPassword(newErrors, newUser, translate, reTypedPassword, password){
     if(!reTypedPassword){
                 newErrors.reTypedPassword = translate("blank_password")
             } else if(reTypedPassword != password){
@@ -36,8 +36,24 @@ export function validateReTypedPassword(newErrors, newUser, translate, reTypedPa
             }
 }
 
-export function validateAllFields(newErrors, translate, name, email, password){
+export function validateUpdate(newErrors, newUser, translate, name, email, password){
     if(!name && !email && !password){
         newErrors.allFieldsBlank = translate("allFieldsBlank")
+    } else{
+        newUser = {name, email, password}
+    }
+}
+
+export function validateTitle(title, newErrors, newTask){
+    if(!title){
+        newErrors.title
+    } else{
+        newTask.title = title
+    }
+}
+
+export function validateDescription(description, newTask){
+    if(description){
+        newTask.description = description
     }
 }

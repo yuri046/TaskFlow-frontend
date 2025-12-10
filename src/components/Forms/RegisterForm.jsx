@@ -4,6 +4,7 @@ import styles from "./Form.module.css";
 import {Register} from "../../API/TaskFlow";
 import { TASKFLOW_URL } from "../../constant/url";
 import { validateEmail, validateName, validatePassword, validateReTypedPassword } from "../../utils/validate";
+import { useNavigate } from "react-router-dom";
 
 const RegisterFormComponent = ()=>{
     const {t} = useTranslation('register');
@@ -12,21 +13,27 @@ const RegisterFormComponent = ()=>{
     const [password, setPassword] = useState('');
     const [reTypedPassword, setReTypedPassword] = useState('');
     const [errors, setErrors] = useState({});
+    const navigate = useNavigate()
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault()
 
         const newErrors = {}
         const newUser = {}
 
-        validateEmail(newErrors, newUser, t)
-        validatePassword(newErrors, newUser, t)
-        validateReTypedPassword(newErrors, newUser, t, reTypedPassword)
         validateName(newErrors, newUser, t, name)
+        validateEmail(newErrors, newUser, t, email)
+        validatePassword(newErrors, newUser, t, password)
+        validateReTypedPassword(newErrors, newUser, t, reTypedPassword, password)
         setErrors(newErrors)
 
         if(Object.keys(newErrors).length === 0){
-            Register(TASKFLOW_URL, newUser)
+            const registered = await Register(TASKFLOW_URL, newUser)
+
+            if(registered){
+                navigate("/login")
+            }
+            
         }
         
     }

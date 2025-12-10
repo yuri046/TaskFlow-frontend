@@ -1,0 +1,41 @@
+.container{
+    width: 100%;
+    overflow-x: auto;  
+    display: flex;
+    justify-content: center;
+}
+
+.table{
+    background-color: #3E3E42;
+    color: #FFFFFF;
+    border-radius: 10px;
+    border-collapse: collapse;
+    
+    table-layout: fixed;
+    
+    
+}
+
+th{
+    text-align: initial;
+}
+
+th, td{
+    border-bottom: 1px solid;
+    padding: 5px;
+    text-transform: capitalize;
+}
+
+td{
+    max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;  
+}
+
+
+@media(max-width: 767px){
+    .container{
+        display: block;
+    }
+}

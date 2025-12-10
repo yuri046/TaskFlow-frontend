@@ -1,0 +1,53 @@
+.container{
+    background: var(--background-third-color);
+    min-height: 100cqh;
+    display: flex;
+    
+    color: white;
+}
+
+.subContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.subContainer2{
+    width: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputTask{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--form-background-primary-color);
+    padding: 50px;
+    font-size: 1.25rem;
+    color: white;
+    border-radius: 0.625rem;
+    gap: 1.7em;
+    width: 30cqw;
+}
+
+.taskButton{
+    padding: 5px;
+    cursor: pointer;
+}
+
+@media(max-width: 767px){
+    
+    .subContainer2{
+        width: 100cqw;
+    }
+
+
+    .inputTask{
+        width: 100cqw;
+        border-radius: 0;
+
+}
+}
