@@ -8,14 +8,29 @@ import Dashboard from "../pages/Dashboard/Dashboard"
 
 const AppRoutes = ()=>{
   return(
-  <Routes>
-    <Route path="/" element={<Login/>}/>
-    <Route path="/login" element={<Login/>}/>
-    <Route path="/register" element={<Register/>}/> 
-    <Route path="/users/me" element={<User/>}/>
-    <Route path="/dashboard" element={<Dashboard/>}/>
-    <Route path="/dashboard/:id"/>
-  </Routes>
+    <Routes>
+      <Route path="/" element={<Login/>}/>
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/register" element={<Register/>}/> 
+
+      <Route
+        path="/users/me"
+        element={
+          <PrivateRoute>
+            <User/>
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/dashboard"
+        element={
+          <PrivateRoute>
+            <Dashboard/>
+          </PrivateRoute>
+        }
+      />
+    </Routes>
   )
 }
 
